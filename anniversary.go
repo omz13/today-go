@@ -12,10 +12,10 @@ func IsInternationalDay(day int, month time.Month, zero time.Time) bool {
 		return false
 	}
 	zero = zero.Round(time.Second).UTC()
-	// the furthest west starting time
+	// the furthest east starting time - latest time zone
 	// note: -1 sec to avoid equality comparison
 	s := time.Date(zero.Year(), month, day, 0, 0, -1, 0, time.FixedZone("UTC+14", 14*60*60))
-	// the further east ending time
+	// the further ending time - International Date Line West (IDLW)
 	// note: day+1 = end of day
 	e := time.Date(zero.Year(), month, day+1, 0, 0, 0, 0, time.FixedZone("UTC-12", -12*60*60))
 	// supplied time within those bounds?
