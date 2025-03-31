@@ -30,6 +30,12 @@ func TestIsInternationalDay(t *testing.T) {
 			}
 		})
 	}
+
+	t.Run("nil", func(t *testing.T) {
+		if r := IsInternationalDay(1, time.April, time.Time{}); r != false {
+			t.Fatal("expected false when time=nil")
+		}
+	})
 }
 
 func TestIsDayMonth(t *testing.T) {
